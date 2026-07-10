@@ -1,92 +1,95 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Birthday Surprise 🎂</title>
+<div id="stars"></div>
 
 <style>
-body{
+*{
 margin:0;
+padding:0;
+box-sizing:border-box;
 font-family:Arial,sans-serif;
-background:linear-gradient(135deg,#ff4d6d,#6a5acd);
+}
+
+body{
+height:100vh;
+overflow:hidden;
 display:flex;
 justify-content:center;
 align-items:center;
-height:100vh;
+background:linear-gradient(135deg,#0f172a,#1e3a8a,#7c3aed);
 color:white;
+}
+
+#stars{
+position:fixed;
+width:100%;
+height:100%;
+top:0;
+left:0;
+background-image:
+radial-gradient(white 1px,transparent 1px),
+radial-gradient(white 1px,transparent 1px);
+background-size:50px 50px,100px 100px;
+animation:moveStars 30s linear infinite;
+opacity:.4;
+}
+
+@keyframes moveStars{
+from{transform:translateY(0);}
+to{transform:translateY(-300px);}
+}
+
+.card{
+position:relative;
+width:90%;
+max-width:420px;
+padding:30px;
+border-radius:25px;
+background:rgba(255,255,255,.12);
+backdrop-filter:blur(18px);
 text-align:center;
+box-shadow:0 0 30px rgba(255,255,255,.15);
+z-index:2;
 }
-.box{
-background:rgba(255,255,255,.15);
-padding:25px;
-border-radius:20px;
-backdrop-filter:blur(10px);
-max-width:350px;
+
+h1{
+font-size:32px;
+margin-bottom:15px;
 }
+
 #countdown{
-font-size:30px;
+font-size:26px;
 font-weight:bold;
 margin:20px 0;
 }
+
 button{
-padding:12px 25px;
+padding:14px 25px;
 border:none;
-border-radius:10px;
-background:#fff;
-color:#ff4d6d;
+border-radius:12px;
 font-size:18px;
 cursor:pointer;
-display:none;
-}
-</style>
-
-</head>
-<body>
-
-<div class="box">
-<h1>🎁 Surprise for Shivani</h1>
-<div id="countdown"></div>
-
-<div id="msg" style="display:none;">
-<h2>🎉 Happy Birthday Shivani! 🎂</h2>
-<p>
-Happy Birthday, Bestie! 🎉<br>
-Tu hamesha khush, successful aur pagal hi rehna.<br>
-Party mat bhoolna, warna dosti temporary suspend! 😂❤️
-</p>
-</div>
-
-<button id="btn">❤️ Open Gift ❤️</button>
-</div>
-
-<script>
-const target=new Date("July 21, 2026 00:00:00").getTime();
-
-setInterval(()=>{
-let now=new Date().getTime();
-let diff=target-now;
-
-if(diff<=0){
-document.getElementById("countdown").style.display="none";
-document.getElementById("msg").style.display="block";
-document.getElementById("btn").style.display="inline-block";
-return;
+background:#ff4d6d;
+color:white;
+transition:.3s;
 }
 
-let d=Math.floor(diff/(1000*60*60*24));
-let h=Math.floor((diff%(1000*60*60*24))/(1000*60*60));
-let m=Math.floor((diff%(1000*60*60))/(1000*60));
-let s=Math.floor((diff%(1000*60))/1000);
-
-document.getElementById("countdown").innerHTML=
-`${d}d ${h}h ${m}m ${s}s`;
-},1000);
-
-document.getElementById("btn").onclick=function(){
-alert("🎂 Best Gift: Stay Happy Forever ❤️");
+button:hover{
+transform:scale(1.05);
 }
-</script>
 
-</body>
-</html>
+.heart{
+position:fixed;
+font-size:20px;
+animation:float 8s linear infinite;
+}
+
+@keyframes float{
+0%{
+transform:translateY(100vh);
+opacity:0;
+}
+20%{opacity:1;}
+100%{
+transform:translateY(-120vh);
+opacity:0;
+}
+}
